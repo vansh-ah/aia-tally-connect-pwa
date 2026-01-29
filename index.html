@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/aia-tally-connect-pwa/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="pwa_aia_tally_connector">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <title>pwa_aia_tally_connector</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        // New service worker activated → reload politely
+        console.log('New version activated, reloading...');
+        window.location.reload();
+      });
+
+      navigator.serviceWorker.ready.then(function (registration) {
+        registration.addEventListener('updatefound', function () {
+          const newWorker = registration.installing;
+
+          newWorker.addEventListener('statechange', function () {
+            if (
+              newWorker.state === 'installed' &&
+              navigator.serviceWorker.controller
+            ) {
+              // New version is ready but waiting
+              showUpdateBanner();
+            }
+          });
+        });
+      });
+    }
+
+    function showUpdateBanner() {
+      if (document.getElementById('update-banner')) return;
+
+      const banner = document.createElement('div');
+      banner.id = 'update-banner';
+      banner.innerHTML = `
+      <div style="
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1976d2;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-family: sans-serif;
+        cursor: pointer;
+        z-index: 9999;
+      ">
+        New version available • Click to refresh
+      </div>
+    `;
+
+      banner.onclick = () => {
+        window.location.reload();
+      };
+
+      document.body.appendChild(banner);
+    }
+  </script>
+
+</body>
+
+</html>
