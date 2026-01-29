@@ -46320,7 +46320,7 @@ return B.c.ac(r,s)},
 $S:288}
 A.wc.prototype={
 a_(a){var s=null,r=A.Yc(s,A.ZZ(B.I,s,s,B.zS),s)
-return new A.ou(A.a6G(new A.ya("Hello World",s,s,s,s),s,s,s),"Flutter Demo",r,s)}}
+return new A.ou(A.a6G(new A.ya("Hello World -2",s,s,s,s),s,s,s),"Flutter Demo",r,s)}}
 A.aO.prototype={
 bz(a){var s=a.a,r=this.a,q=s[15]
 r.$flags&2&&A.a8(r)
